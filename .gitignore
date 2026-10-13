@@ -1,0 +1,13 @@
+# Maven 构建产物
+target/
+# IDEA 工程配置
+.idea/
+*.iml
+out/
+# 编译输出
+*.class
+# 日志
+*.log
+# 操作系统
+Thumbs.db
+.DS_Store

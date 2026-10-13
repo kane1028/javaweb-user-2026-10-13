@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户登录 - 用户管理系统</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+</head>
+<body class="bg-body-tertiary">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">用户管理系统</a>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="index.html">首页</a>
+            <a class="nav-link active" href="login.html">登录</a>
+            <a class="nav-link" href="register.html">注册</a>
+            <a class="nav-link" href="forgot.html">忘记密码</a>
+            <a class="nav-link" href="logout">退出</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h4 class="card-title text-center mb-1">用户登录</h4>
+                    <p class="text-center text-muted small mb-4">请输入用户名和密码</p>
+
+                    <!-- 服务端校验失败时，Servlet 会带着 ?error=中文提示 跳回来，这里显示 -->
+                    <div id="tip" class="d-none mb-3"></div>
+
+                    <!--
+                        action="login"：相对路径，会被解析成 /javaweb-user/login
+                        用相对路径的好处是项目改名、换 Context Path 都不用改页面
+                    -->
+                    <form id="loginForm" action="login" method="post" novalidate>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">用户名</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                   placeholder="请输入用户名" required autofocus>
+                            <div class="invalid-feedback">请输入用户名</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">密码</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="请输入密码" required>
+                            <div class="invalid-feedback">请输入密码</div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="remember" name="remember" value="on">
+                            <label class="form-check-label" for="remember">
+                                记住我（7 天内免登录）
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">登 录</button>
+                    </form>
+
+                    <hr class="my-4">
+                    <div class="d-flex justify-content-between small">
+                        <a href="register.html">还没有账号？去注册</a>
+                        <a href="forgot.html">忘记密码？</a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-muted small mt-3 mb-0">
+                测试账号：<code>admin</code> / <code>123456</code>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="static/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 1. 把 Servlet 跳转回来时带的中文提示显示出来。
+    //    用 textContent 而不是 innerHTML：万一提示里混进 <script>，也只会被当纯文字显示，防住 XSS。
+    (function showServerMessage() {
+        const error = new URLSearchParams(location.search).get('error');
+        if (!error) return;
+        const box = document.getElementById('tip');
+        box.textContent = '⚠️ ' + error;
+        box.className = 'alert alert-danger py-2 mb-3';
+    })();
+
+    // 2. 前端校验：只是为了体验（不用等一次服务器往返），真正拦得住的是 Servlet 那一份
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        const form = this;
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+    });
+</script>
+</body>
+</html>

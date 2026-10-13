@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户管理系统 - 首页</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+</head>
+<body class="bg-body-tertiary">
+
+<!-- 顶部导航条 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">用户管理系统</a>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link active" href="index.html">首页</a>
+            <a class="nav-link" href="login.html">登录</a>
+            <a class="nav-link" href="register.html">注册</a>
+            <a class="nav-link" href="forgot.html">忘记密码</a>
+            <a class="nav-link" href="logout">退出</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">用户管理系统</h1>
+        <p class="text-muted mb-0">JavaWeb 课程作业 —— 登录 / 注册 / 忘记密码 三个页面与对应的三个 Servlet</p>
+    </div>
+
+    <!-- 三大功能入口 -->
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div style="font-size:40px">🔑</div>
+                    <h5 class="card-title mt-2">用户登录</h5>
+                    <p class="card-text text-muted small">输入用户名和密码登录，支持「记住我」。</p>
+                    <a href="login.html" class="btn btn-primary">去登录</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div style="font-size:40px">📝</div>
+                    <h5 class="card-title mt-2">用户注册</h5>
+                    <p class="card-text text-muted small">填写用户名、密码、姓名、邮箱、手机号完成注册。</p>
+                    <a href="register.html" class="btn btn-success">去注册</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <div style="font-size:40px">❓</div>
+                    <h5 class="card-title mt-2">找回密码</h5>
+                    <p class="card-text text-muted small">用注册邮箱验证身份，重置为随机新密码。</p>
+                    <a href="forgot.html" class="btn btn-warning">去找回</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 测试账号 + 说明 -->
+    <div class="row g-4 mt-4 justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white fw-bold">预置测试账号</div>
+                <div class="card-body">
+                    <table class="table table-sm mb-0">
+                        <thead>
+                        <tr><th>用户名</th><th>密码</th><th>注册邮箱（找回密码用）</th></tr>
+                        </thead>
+                        <tbody>
+                        <tr><td><code>admin</code></td><td><code>123456</code></td><td><code>admin@example.com</code></td></tr>
+                        </tbody>
+                    </table>
+                    <p class="text-muted small mb-0 mt-2">也可以先自己注册一个账号再登录。</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card shadow-sm border-info">
+                <div class="card-header bg-white fw-bold text-info">使用说明</div>
+                <div class="card-body">
+                    <ul class="mb-0 small text-muted">
+                        <li>用户数据保存在<strong>内存</strong>里（模拟数据库），<strong>重启 Tomcat 后会清空</strong>，这不是 bug。</li>
+                        <li>页面样式用的是项目内的 Bootstrap，<strong>不需要联网</strong>。</li>
+                        <li>表单校验前端、后端各做一遍，后端那份才是安全边界。</li>
+                        <li>Servlet 地址为 <code>/login</code>、<code>/register</code>、<code>/forgot</code>，直接用地址栏打开会提示「这是表单处理地址」。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="text-center text-muted small mt-5 mb-0">
+        软件技术专业 &nbsp;|&nbsp; 蒲正艺 &nbsp;|&nbsp; 基于 Servlet 4.0 + Tomcat 9 + Maven
+    </p>
+</div>
+
+<script src="static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
